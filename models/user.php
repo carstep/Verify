@@ -34,9 +34,7 @@ class User extends EloquentVerifyBase
 	 */
 	public function can($permissions)
 	{
-		$permissions = !is_array($permissions)
-			? array($permissions)
-			: $permissions;
+		$permissions = (array)$permissions;
 
 		$class = get_class();
 		$to_check = new $class;
@@ -72,9 +70,7 @@ class User extends EloquentVerifyBase
 	 */
 	public function is($roles)
 	{
-		$roles = !is_array($roles)
-			? array($roles)
-			: $roles;
+		$roles = (array)$roles;
 
 		$valid = FALSE;
 
@@ -104,7 +100,7 @@ class User extends EloquentVerifyBase
 		switch ($modifier)
 		{
 			case '=':
-				return $user_level = $level;
+				return $user_level == $level;
 				break;
 
 			case '>=':
